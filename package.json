@@ -22,13 +22,7 @@
     "start": "webpack-dev-server --open --mode production",
     "start:dev": "webpack-dev-server --open --mode development",
     "start:backend": "pm2 start backend/index.js",
-    "pull:fhir-viewer": "   git subtree pull -P ext/fhir-viewer           --squash https://github.com/smart-on-fhir/fhir-viewer.git           master",
-    "pull:sample-data": "   git subtree pull -P ext/generated-sample-data --squash https://github.com/smart-on-fhir/generated-sample-data.git master",
-    "pull:xml-uploader": "  git subtree pull -P ext/xml-bundle-uploader   --squash https://github.com/smart-on-fhir/xml-bundle-uploader.git   master",
-    "pull:smart-launcher": "git subtree pull -P ext/smart-launcher        --squash https://github.com/chb/smart-launcher.git                  master",
-    "pull:tag-uploader": "  git subtree pull -P ext/tag-uploader          --squash https://github.com/smart-on-fhir/tag-uploader.git          master",
-    "pull:synthea": "       git subtree pull -P ext/synthea               --squash https://github.com/synthetichealth/synthea.git             master",
-    "pull:subtree": "npm run pull:fhir-viewer && npm run pull:sample-data && npm run pull:xml-uploader && npm run pull:smart-launcher && npm run pull:tag-uploader && npm run pull:synthea"
+    "postinstall": "./postinstall.sh"
   },
   "keywords": [],
   "dependencies": {
