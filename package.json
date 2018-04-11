@@ -22,7 +22,21 @@
     "start": "webpack-dev-server --open --mode production",
     "start:dev": "webpack-dev-server --open --mode development",
     "start:backend": "pm2 start backend/index.js",
-    "postinstall": "./postinstall.sh"
+    "add:smart-launcher": "git subtree add --prefix=ext/smart-launcher        https://github.com/chb/smart-launcher.git                  master --squash",
+    "add:sample-data": "   git subtree add --prefix=ext/generated-sample-data https://github.com/smart-on-fhir/generated-sample-data.git master --squash",
+    "add:tag-uploader": "  git subtree add --prefix=ext/tag-uploader          https://github.com/smart-on-fhir/tag-uploader.git          master --squash",
+    "add:xml-uploader": "  git subtree add --prefix=ext/xml-bundle-uploader   https://github.com/smart-on-fhir/xml-bundle-uploader.git   master --squash",
+    "add:synthea": "       git subtree add --prefix=ext/synthea               https://github.com/synthetichealth/synthea.git             master --squash",
+    "add:fhir-viewer": "   git subtree add --prefix=ext/fhir-viewer           https://github.com/smart-on-fhir/fhir-viewer.git           master --squash",
+    "add:subtree": "npm run add:smart-launcher && npm run add:sample-data && npm run add:tag-uploader && npm run add:xml-uploader && npm run add:synthea && npm run add:fhir-viewer",
+    "pull:fhir-viewer": "   git subtree pull -P ext/fhir-viewer           --squash https://github.com/smart-on-fhir/fhir-viewer.git           master",
+    "pull:sample-data": "   git subtree pull -P ext/generated-sample-data --squash https://github.com/smart-on-fhir/generated-sample-data.git master",
+    "pull:xml-uploader": "  git subtree pull -P ext/xml-bundle-uploader   --squash https://github.com/smart-on-fhir/xml-bundle-uploader.git   master",
+    "pull:smart-launcher": "git subtree pull -P ext/smart-launcher        --squash https://github.com/chb/smart-launcher.git                  master",
+    "pull:tag-uploader": "  git subtree pull -P ext/tag-uploader          --squash https://github.com/smart-on-fhir/tag-uploader.git          master",
+    "pull:synthea": "       git subtree pull -P ext/synthea               --squash https://github.com/synthetichealth/synthea.git             master",
+    "pull:subtree": "npm run pull:fhir-viewer && npm run pull:sample-data && npm run pull:xml-uploader && npm run pull:smart-launcher && npm run pull:tag-uploader && npm run pull:synthea",
+    "postinstall": "npm run add:subtree"
   },
   "keywords": [],
   "dependencies": {
