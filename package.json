@@ -35,8 +35,7 @@
     "pull:smart-launcher": "git subtree pull -P ext/smart-launcher        --squash https://github.com/chb/smart-launcher.git                  master",
     "pull:tag-uploader": "  git subtree pull -P ext/tag-uploader          --squash https://github.com/smart-on-fhir/tag-uploader.git          master",
     "pull:synthea": "       git subtree pull -P ext/synthea               --squash https://github.com/synthetichealth/synthea.git             master",
-    "pull:subtree": "npm run pull:fhir-viewer && npm run pull:sample-data && npm run pull:xml-uploader && npm run pull:smart-launcher && npm run pull:tag-uploader && npm run pull:synthea",
-    "postinstall": "npm run add:subtree"
+    "pull:subtree": "npm run pull:fhir-viewer && npm run pull:sample-data && npm run pull:xml-uploader && npm run pull:smart-launcher && npm run pull:tag-uploader && npm run pull:synthea"
   },
   "keywords": [],
   "dependencies": {

@@ -23,8 +23,8 @@ RUN mkdir -p /usr/app && mv /tmp/node_modules /usr/app/node_modules
 
 # install smart-launcher
 RUN rm -f /tmp/package-lock.json && rm -f /tmp/package.json
-COPY /usr/app/ext/smart-launcher/package.json /tmp/package.json
-COPY /usr/app/ext/smart-launcher/package-lock.json /tmp/package-lock.json
+COPY ext/smart-launcher/package.json /tmp/package.json
+COPY ext/smart-launcher/package-lock.json /tmp/package-lock.json
 RUN cd /tmp && npm install
 RUN mkdir -p /usr/app/ext/smart-launcher && mv /tmp/node_modules /usr/app/ext/smart-launcher/node_modules
 
