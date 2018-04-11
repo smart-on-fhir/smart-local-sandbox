@@ -1,0 +1,91 @@
+.console-toolbar {
+    position: absolute;
+    bottom: 100%;
+    right: -1px;
+    padding: 5px 5px 0 0;
+    background: linear-gradient(#f6f6f6, #eee);
+    border: 1px solid #bbb;
+    border-radius: 5px 5px 0 0;
+    border-bottom: 0;
+
+    .btn {
+        outline: none !important;
+
+        // &:not(.active):hover,
+        // &:not(.active):focus {
+        //     background: #FFF;
+        // }
+    }
+}
+
+.console-wrap {
+    
+    // height: 500px;
+    position: relative;
+    border: 1px solid #bbb;
+    background: linear-gradient(#eee, #f6f6f6 100px);
+    // margin: 0 0 5px;
+    // box-shadow: 0 2px 5px -3px #000 inset;
+    flex: 1;
+    transform: translateZ(0);
+
+    &.fullscreen {
+        position: fixed;
+        top: 28px;
+        left: 2px;
+        right: 2px;
+        bottom: 2px;
+        box-shadow: 0px 0px 0px 33px #e2e2e2;
+        border-radius: 4px 0 4px 4px;
+        z-index: 1000;
+    }
+}
+
+.console {
+    overflow: auto;
+    font-family: Menlo, monospace;
+    font-size: 13px;
+    line-height: 15px;
+    position: absolute;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    word-break: break-word;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    padding: 4px 0;
+    width: 100%;
+    height: 100%;
+}
+
+.console:empty:before {
+    content: "No messages to display";
+    display: block;
+    text-align: center;
+    font-family: sans-serif;
+    font-size: large;
+    line-height: 2em;
+    color: rgba(0, 0, 0, 0.3);
+    text-shadow: 0 1px 0 #FFF;
+}
+
+.console > div {
+    padding: 0 4px;
+    // box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.3);
+}
+
+.console .log {
+    color: rgb(0, 0, 0);
+}
+
+.console .info {
+    color: #007b9a;
+}
+
+.console .warn {
+    color: #a55e00;
+}
+
+.console .err {
+    color: #cc0000;
+}
