@@ -6,7 +6,6 @@ Docker based sandbox for smart apps
 git clone https://github.com/smart-on-fhir/smart-local-sandbox.git
 cd smart-local-sandbox
 npm i
-npm run add:subtree
 
 # Then build and run the Docker image:
 docker build -t smart-sandbox . && ./run.sh
