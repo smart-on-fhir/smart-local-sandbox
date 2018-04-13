@@ -30,7 +30,8 @@ module.exports = {
         {
             name  : "app_launcher",
             script: "src/index.js",
-            cwd   : "/usr/app/ext/smart-launcher"
+            cwd   : "/usr/app/ext/smart-launcher",
+            env   : process.env
         }
     ]
 };
