@@ -15,12 +15,19 @@ we have never tested it. You will have to spare at least 2GB of memory and 2+
 CPU cores if you want all systems to function normally.
 
 ## Installation
+Make sure Docker is running and then open your terminal and run:
 ```sh
 git clone https://github.com/smart-on-fhir/smart-local-sandbox.git
 cd smart-local-sandbox
 
 # Then build and run the Docker image:
-docker build -t smart-sandbox . && ./run.sh
+docker build -t smart-sandbox .
+
+# For Mac and Linux:
+./run.sh
+
+# Or for windows:
+run.bat
 
 # No you are withing the Linux image. To start the sandbox run:
 ./start.sh

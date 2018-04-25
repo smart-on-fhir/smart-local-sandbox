@@ -1,6 +1,5 @@
 CWD=`pwd`;
 
-# docker run -it smart-sandbox:latest bash
 
 docker run -it \
     -p 4000:4000 \
