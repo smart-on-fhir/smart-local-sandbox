@@ -36,6 +36,16 @@ You cad use <kbd>q</kbd> or <kbd>Ctrl</kbd>+<kbd>c</kbd> to exit from the
 pm2 dashboard. This way you can go look at log files or do anything else while
 the system will continue running.
 
+## Windows notes
+1. Make sure you have the hosts file which is typically located at `C:\Windows\System32\drivers\etc\hosts`.
+   The file should contain a line like `127.0.0.1  localhost` and that line must not be commented (starting with #).
+   If the file is missing or needs to be edited, run your favourite text editor as administrator and make
+   the needed changes.
+
+2. It might be impossible to open local IP links (like http://127.0.0.1) in Edge. If that is the case, you will have
+   "Run as Administrator" the system's command prompt app and execute:
+   ```CheckNetIsolation LoopbackExempt -a -n="Microsoft.MicrosoftEdge_8wekyb3d8bbwe"```.
+
 ## Usage
 After uou install and start the sandbox, what you get is just a list of different
 services running locally on different ports:
