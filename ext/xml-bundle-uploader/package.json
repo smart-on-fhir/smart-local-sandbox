@@ -1,0 +1,25 @@
+{
+  "name": "xml-bundle-uploader",
+  "version": "1.0.0",
+  "description": "Small CLI tool to upload xml fhir bundles",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/smart-on-fhir/xml-bundle-uploader.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/smart-on-fhir/xml-bundle-uploader/issues"
+  },
+  "homepage": "https://github.com/smart-on-fhir/xml-bundle-uploader#readme",
+  "dependencies": {
+    "commander": "^2.11.0",
+    "request": "^2.81.0",
+    "walk": "^2.3.9"
+  }
+}
