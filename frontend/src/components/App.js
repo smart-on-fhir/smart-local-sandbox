@@ -57,6 +57,7 @@ class App extends React.Component
                                 style={{ display: tab.hidden ? "none" : "block" }}
                             >
                                 <a>
+                                    <span><i className={ tab.icon }/> { tab.title }</span>
                                     { tab.closable && <i
                                         className="fas fa-times-circle text-danger close-btn"
                                         title="Close"
@@ -65,10 +66,8 @@ class App extends React.Component
                                             this.props.dispatch(closeShell());
                                         }}
                                     /> }
-                                    <i className={ tab.icon }/>
-                                    <span> { tab.title }</span>
                                 </a>
-                            </li>        
+                            </li>
                         ))
                     }
                 </ul>

@@ -76,20 +76,18 @@ body {
     text-shadow: 0 1px 0 #FFF;
 }
 
-
-
-
-
-
-.nav-tabs>li>a:hover {
-    border-color: rgba(255, 255, 255, 0.5) rgba(255, 255, 255, 0.5) #ddd;
-    background-color: rgba(0, 0, 0, 0.04);
+.nav-tabs > li > a {
+    white-space: nowrap;
+    &:hover {
+        border-color: rgba(255, 255, 255, 0.5) rgba(255, 255, 255, 0.5) #ddd;
+        background-color: rgba(0, 0, 0, 0.04);
+    }
 }
+
 .nav-tabs li {
     a .close-btn {
-        margin: 4px 0 0 12px;
+        margin: 0 0 0 12px;
         color: rgba(0, 0, 0, 0.2);
-        float: right;
         cursor:pointer;
         transition: all 0.2s;
     }
