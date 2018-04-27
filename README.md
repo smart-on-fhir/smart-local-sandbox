@@ -1,80 +1,47 @@
-# smart-local-sandbox
-Docker based sandbox for smart apps
+# SMART/FHIR proxy server and app launcher
+Launcher for SMART apps
 
-## Prerequisites
-You will have to have Git and Docker installed before using this project.
-
-### Git
-You can download Git form https://git-scm.com/downloads and follow the
-installation instructions for your operating system.
-
-### Docker
-You can download Docker form https://www.docker.com/get-docker. This project
-was developed with Docker version 18.03. It might work with older versions but
-we have never tested it. You will have to spare at least 2GB of memory and 2+
-CPU cores if you want all systems to function normally.
-
-## Installation
-Make sure Docker is running and then open your terminal and run:
+## OIDC Keys generation
+To generate new private and public keys make sure you have `openssl` (comes pre-installed with the Mac), `cd` to the project root and execute:
 ```sh
-git clone https://github.com/smart-on-fhir/smart-local-sandbox.git
-cd smart-local-sandbox
-
-# Then build and run the Docker image:
-docker build -t smart-sandbox .
-
-# For Mac and Linux:
-./run.sh
-
-# Or for windows:
-run.bat
-
-# No you are withing the Linux image. To start the sandbox run:
-./start.sh
+npm run cert
 ```
-You cad use <kbd>q</kbd> or <kbd>Ctrl</kbd>+<kbd>c</kbd> to exit from the
-pm2 dashboard. This way you can go look at log files or do anything else while
-the system will continue running.
+Then re-start the server and it will use the new keys.
 
-## Windows notes
-1. Make sure you have the hosts file which is typically located at `C:\Windows\System32\drivers\etc\hosts`.
-   The file should contain a line like `127.0.0.1  localhost` and that line must not be commented (starting with #).
-   If the file is missing or needs to be edited, run your favourite text editor as administrator and make
-   the needed changes.
+## OIDC Token verification
+If you want to verify the tokens follow this procedure:
+1. Point your server to `/.well-known/openid-configuration/`. This should render a JSON with a link to another file like this:
+```json
+{
+    "jwks_uri": "http://localhost:8443/keys"
+}
+```
+2. Follow that link and it should return an array with one or more JWK keys like this:
+```js
+{
+    "keys": [
+        {
+            "alg": "RS256",
+            "kid": "9c37bf73343adb93920a7ae80260b0e57684551e",
+            "use": "sig",
+            "kty": "RSA",
+            // ...
+        }
+    ]
+}
+```
 
-2. It might be impossible to open local IP links (like http://127.0.0.1) in Edge. If that is the case, you will have
-   "Run as Administrator" the system's command prompt app and execute:
-   ```CheckNetIsolation LoopbackExempt -a -n="Microsoft.MicrosoftEdge_8wekyb3d8bbwe"```.
+3. Use the first key and extract the public key out of it. To do so, you can use tools like https://github.com/Brightspace/node-jwk-to-pem. Something like this would be the basic example:
+```js
+const JWK_KEY = getJwkKeySomehow(); // as described above
+const ID_TOKEN = getIdTokenSomehow();
+try {
+    jwt.verify(ID_TOKEN, jwkToPem(JWK_KEY), { algorithms: ["RS256"] });
+} catch (ex) {
+    // Cannot verify the token...
+}
+```
+Libraries like https://www.npmjs.com/package/jwks-rsa can be used to automate this process.
 
-## Usage
-After uou install and start the sandbox, what you get is just a list of different
-services running locally on different ports:
-
-Name                      | URL
---------------------------|---------------------
-**Sandbox Control Panel** |http://localhost:4000 
-**SMART App Launcher**    |http://localhost:4001
-**DSTU2 HAPI Server**     |http://localhost:4002
-**STU3 HAPI Server**      |http://localhost:4003
-**Fhir Viewer**           |http://localhost:4004
-
-### Sandbox Control Panel
-The Sandbox Control Panel is what you should open and use to start and control everything else.
-
-### SMART App Launcher
-This is the same tool that uou can find at http://launch.smarthealthit.org/
-but this one is running locally and has a patient picker that is 
-pre-configured to browse the local HAPI servers.
-
-### HAPI Servers
-There are two instances of HAPI 3.2 that you can use. One is 
-pre-configured to run STU-3 and the other is for DSTU-2. Initially, these
-severs are stopped and empty (have no patient data inserted). Once you
-start the Control Panel you will find an easy to use UI for starting or 
-stopping them as well as for inserting all kinds of sample data.
-
-### Fhir Viewer
-This is just a simple JSON viewer based on the VSCode editor. It knows how
-to follow FHIR references and is especially useful for large JSON responses.
-You will typically open this by clicking on `Browse Data / Browse JSON` in some
-of the server views of the Control Panel.
+### Notes about jwt.io
+People often use https://jwt.io/ to generate and validate tokens. However, it seems that the RS256 signature verification feature expects you to paste `x.509` formatted public key or certificate and does not work with PEM-encoded PKCS#1 public keys. For that reason, if you want to manually verify your token at https://jwt.io/, you will need to provide the original x.509 version of the public key that you can find at the `/public_key` endpoint of the server.
