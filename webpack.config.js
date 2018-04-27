@@ -8,7 +8,7 @@ module.exports = {
     entry: ["./frontend/src/index.js"],
 
     output: {
-        path: path.resolve(__dirname, "frontend/dist"),
+        path: path.resolve(__dirname, "backend/static"),
         filename: "js/[name].js"
     },
 
@@ -33,7 +33,7 @@ module.exports = {
     },
 
     devServer: {
-        contentBase: "./frontend/dist"
+        contentBase: "./backend/static"
     },
 
     resolve: {
