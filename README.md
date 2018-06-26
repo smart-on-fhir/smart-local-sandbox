@@ -1,3 +1,6 @@
+# Deprecated!
+This was an experimental project and we don't currently have plans to support it. Please check out https://github.com/smart-on-fhir/smart-dev-sandbox instead.
+
 # smart-local-sandbox
 Docker based sandbox for smart apps
 
